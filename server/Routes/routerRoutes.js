@@ -3,11 +3,11 @@ import {
   getPieChart,
   getCombinedData,
   getStatistics,
-} from "../Controllers/statisticsControllers";
+} from "../Controllers/statisticsControllers.js";
 import {
   seedData,
   getTransactions,
-} from "../Controllers/transactionController";
+} from "../Controllers/transactionController.js";
 import express from "express";
 const router = express.Router();
 router.get("/seed", seedData);

@@ -7,12 +7,12 @@ const port = process.env.PORT || 3000;
 const app = express();
 configDotenv();
 app.use(express.json());
-app.use("/api/transactions", routes);
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
   })
 );
+app.use("/api", routes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

@@ -1,4 +1,4 @@
-import Product from "../models/model";
+import Product from "../models/model.js";
 
 export const getStatistics = async (req, res) => {
   const { month } = req.params;

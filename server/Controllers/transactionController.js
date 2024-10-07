@@ -2,31 +2,36 @@ import Product from "../models/model.js";
 import axios from "axios";
 
 export const getTransactions = async (req, res) => {
-  const { search = "" } = req.query;
-  const page = 1,
-    perPage = 10;
+  const { search = "", page = 1, perPage = 10, month } = req.query;
   const pageNum = parseInt(page);
   const perPageNum = parseInt(perPage);
+  let query = {};
+  if (search) {
+    query = {
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { price: parseFloat(search) || { $exists: true } },
+      ],
+    };
+  }
+  const start = new Date(`2021-${month}-01`);
+  const end = new Date(`2021-${month}-31`);
+  query.dateOfSale = { $gte: start, $lt: end };
   try {
-    // let query = {};
-    // if (search) {
-    //   query = {
-    //     $or: [
-    //       { title: { $regex: search, $options: "i" } },
-    //       { description: { $regex: search, $options: "i" } },
-    //       { price: parseFloat(search) || { $exists: true } },
-    //     ],
-    //   };
-    // }
-    const totalItems = await Product.countDocuments(req.query);
-    const transactions = await Product.find(req.query);
-
+    const totalItems = await Product.countDocuments(query);
+    const transactions = await Product.find(query)
+      .skip((pageNum - 1) * perPageNum)
+      .limit(perPageNum);
     res.json({
-      Total: totalItems,
+      page: pageNum,
+      perPage: perPageNum,
+      totalItems,
+      totalPages: Math.ceil(totalItems / perPageNum),
       transactions,
     });
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch " });
+    res.status(500).json({ error: "Failed to fetch transactions" });
   }
 };
 
