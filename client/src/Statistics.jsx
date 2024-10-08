@@ -35,11 +35,11 @@ const Statistics = ({ month }) => {
             {statistics.totalSaleAmount.toFixed(2)}
           </p>
           <p>
-            <strong>Total Sold Items:</strong> {statistics.totalSoldItems}
+            <strong>Total Sold Items:</strong> {statistics.totalSoldproducts}
           </p>
           <p>
             <strong>Total Not Sold Items:</strong>{" "}
-            {statistics.totalNotSoldItems}
+            {statistics.totalNotSoldproducts}
           </p>
         </div>
       </div>
