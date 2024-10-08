@@ -12,7 +12,7 @@ function App() {
   return (
     <main>
       <Months month={month} handleMonthChange={handleMonthChange} />
-      <TransactionsTable month={month} setMonth={setMonth} />
+      <TransactionsTable month={month} />
       <Statistics month={month} />
       <BarCharts month={month} />
     </main>

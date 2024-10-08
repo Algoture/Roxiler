@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const TransactionsTable = ({ month, setMonth }) => {
+const TransactionsTable = ({ month }) => {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -31,7 +31,7 @@ const TransactionsTable = ({ month, setMonth }) => {
 
   const handleNextPage = () => setPage((prevPage) => prevPage + 1);
   const handlePrevPage = () => setPage((prevPage) => Math.max(prevPage - 1, 1));
-  
+
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setPage(1);
