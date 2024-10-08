@@ -4,25 +4,24 @@ export const getStatistics = async (req, res) => {
   const { month } = req.params;
   const start = new Date(`2022-${month}-01`);
   const end = new Date(`2022-${month}-31`);
-
   try {
-    const soldItems = await Product.find({
+    const soldproducts = await Product.find({
       sold: true,
       dateOfSale: { $gte: start, $lt: end },
     });
-    const allItems = await Product.find({
+    const allproducts = await Product.find({
       dateOfSale: { $gte: start, $lt: end },
     });
-    const totalSaleAmount = soldItems.reduce(
+    const totalSaleAmount = soldproducts.reduce(
       (total, item) => total + item.price,
       0
     );
-    const totalSoldItems = soldItems.length;
-    const totalNotSoldItems = allItems.length - totalSoldItems;
+    const totalSoldproducts = soldproducts.length;
+    const totalNotSoldproducts = allproducts.length - totalSoldproducts;
     res.json({
       totalSaleAmount,
-      totalSoldItems,
-      totalNotSoldItems,
+      totalSoldproducts,
+      totalNotSoldproducts,
     });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch statistics" });
@@ -105,5 +104,32 @@ export const getCombinedData = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch combined data" });
+  }
+};
+export const getCategories = async (req, res) => {
+  const { month } = req.params;
+  try {
+    const products = await Product.aggregate([
+      {
+        $addFields: {
+          monthOfSale: { $month: "$dateOfSale" },
+        },
+      },
+      {
+        $match: {
+          monthOfSale: parseInt(month),
+        },
+      },
+      {
+        $group: {
+          _id: "$category",
+          totalItems: { $sum: 1 },
+        },
+      },
+    ]);
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch category" });
   }
 };
