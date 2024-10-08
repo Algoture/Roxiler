@@ -15,7 +15,7 @@ app.use(
 app.use("/api", routes);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Roxiler API is running..");
 });
 
 app.listen(port, () => {

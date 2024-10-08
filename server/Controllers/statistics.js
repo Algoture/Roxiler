@@ -93,9 +93,9 @@ export const getCombinedData = async (req, res) => {
   const { month } = req.params;
   try {
     const [statisticsRes, barChartRes, pieChartRes] = await Promise.all([
-      axios.get(`http://localhost:3000/api/statistics/${month}`),
-      axios.get(`http://localhost:3000/api/bar-chart/${month}`),
-      axios.get(`http://localhost:3000/api/pie-chart/${month}`),
+      axios.get(`http://localhost:${process.env.PORT}/api/statistics/${month}`),
+      axios.get(`http://localhost:${process.env.PORT}/api/bar-chart/${month}`),
+      axios.get(`http://localhost:${process.env.PORT}/api/pie-chart/${month}`),
     ]);
     res.json({
       statistics: statisticsRes.data,

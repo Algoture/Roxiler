@@ -10,7 +10,7 @@ const TransactionsTable = ({ month }) => {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/transactions`,
+          `${import.meta.env.VITE_TRANSACTIONS_URL}`,
           {
             params: {
               search: search,
