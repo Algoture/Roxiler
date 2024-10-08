@@ -6,23 +6,29 @@ export const getTransactions = async (req, res) => {
   const pageNum = parseInt(page);
   const perPageNum = parseInt(perPage);
   let query = {};
+  const isNumericSearch = !isNaN(parseFloat(search));
+
   if (search) {
     query = {
       $or: [
         { title: { $regex: search, $options: "i" } },
         { description: { $regex: search, $options: "i" } },
-        { price: parseFloat(search) || { $exists: true } },
+        ...(isNumericSearch ? [{ price: parseFloat(search) }] : []),
       ],
     };
   }
-  const start = new Date(`2022-${month}-01`);
-  const end = new Date(`2022-${month}-31`);
-  query.dateOfSale = { $gte: start, $lt: end };
+  if (month) {
+    const start = new Date(`2022-${month}-01`);
+    const end = new Date(`2022-${month}-31`);
+    query.dateOfSale = { $gte: start, $lt: end };
+  }
+
   try {
     const totalItems = await Product.countDocuments(query);
     const transactions = await Product.find(query)
       .skip((pageNum - 1) * perPageNum)
       .limit(perPageNum);
+
     res.json({
       page: pageNum,
       perPage: perPageNum,
