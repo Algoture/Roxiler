@@ -11,7 +11,7 @@ body {
 }
 
 .table-container {
-  width: 80%;
+  width: 95%;
   margin: 20px auto;
   border-collapse: collapse;
 }
@@ -33,10 +33,10 @@ table th {
   background-color: #f2f2f2;
   font-weight: bold;
 }
+/* table tr:nth-child(odd) {
+  background-color: #fff;
+} */
 
-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
 
 table tr:hover {
   background-color: #f1f1f1;
@@ -84,13 +84,15 @@ h2 {
   margin: 0 5px;
   font-size: 16px;
   cursor: pointer;
-  border: 1px solid #ccc;
+  outline: none;
+  border: none;
   background-color: #F9C80E;
   border-radius: 4px;
 }
 
 .pagination-controls button:hover {
-  background-color: #ddd;
+  background-color: #000000;
+  color: #fff;
 }
 .pageBtns {
   display: flex;
@@ -128,6 +130,7 @@ h2 {
   margin: 5px 0;
 }
 .barChartDiv {
+  padding: 1rem;
   margin-top: 5rem;
 }
 .chart-container {
