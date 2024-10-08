@@ -1,14 +1,11 @@
+import { seedData, getTransactions } from "../Controllers/transactions.js";
 import {
   getBarChart,
   getPieChart,
   getCombinedData,
   getStatistics,
   getCategories,
-} from "../Controllers/statisticsControllers.js";
-import {
-  seedData,
-  getTransactions,
-} from "../Controllers/transactionController.js";
+} from "../Controllers/statistics.js";
 import express from "express";
 const router = express.Router();
 
