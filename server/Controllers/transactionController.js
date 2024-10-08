@@ -15,8 +15,8 @@ export const getTransactions = async (req, res) => {
       ],
     };
   }
-  const start = new Date(`2021-${month}-01`);
-  const end = new Date(`2021-${month}-31`);
+  const start = new Date(`2022-${month}-01`);
+  const end = new Date(`2022-${month}-31`);
   query.dateOfSale = { $gte: start, $lt: end };
   try {
     const totalItems = await Product.countDocuments(query);

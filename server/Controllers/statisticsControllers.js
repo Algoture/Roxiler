@@ -2,8 +2,8 @@ import Product from "../models/model.js";
 
 export const getStatistics = async (req, res) => {
   const { month } = req.params;
-  const start = new Date(`2021-${month}-01`);
-  const end = new Date(`2021-${month}-31`);
+  const start = new Date(`2022-${month}-01`);
+  const end = new Date(`2022-${month}-31`);
 
   try {
     const soldItems = await Product.find({
@@ -30,8 +30,8 @@ export const getStatistics = async (req, res) => {
 };
 export const getPieChart = async (req, res) => {
   const { month } = req.params;
-  const start = new Date(`2021-${month}-01`);
-  const end = new Date(`2021-${month}-31`);
+  const start = new Date(`2022-${month}-01`);
+  const end = new Date(`2022-${month}-31`);
   try {
     const products = await Product.find({
       dateOfSale: { $gte: start, $lt: end },
@@ -51,8 +51,8 @@ export const getPieChart = async (req, res) => {
 };
 export const getBarChart = async (req, res) => {
   const { month } = req.params;
-  const start = new Date(`2021-${month}-01`);
-  const end = new Date(`2021-${month}-31`);
+  const start = new Date(`2022-${month}-01`);
+  const end = new Date(`2022-${month}-31`);
 
   try {
     const products = await Product.find({
