@@ -39,7 +39,11 @@ const TransactionsTable = ({ month }) => {
 
   return (
     <div className="table-container">
-      <h2>Transaction Dashboard</h2>
+      <div className="transactionDash">
+        <div className="transactionInside">
+          <h2>Transaction Dashboard</h2>
+        </div>
+      </div>
       <div className="search-container">
         <input
           type="text"

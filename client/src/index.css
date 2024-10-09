@@ -30,13 +30,27 @@ table td {
 }
 
 table th {
-  background-color: #F9C80E;
+  background-color: #f9c80e;
   font-weight: bold;
 }
 /* table tr:nth-child(odd) {
   background-color: #fff;
 } */
+.transactionInside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+  width: 12rem;
+  background-color: #f9c80e;
+  border-radius: 50%;
+}
 
+.transactionDash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 table tr:hover {
   background-color: #f1f1f1;
@@ -86,7 +100,7 @@ h2 {
   cursor: pointer;
   outline: none;
   border: none;
-  background-color: #F9C80E;
+  background-color: #f9c80e;
   border-radius: 4px;
 }
 
